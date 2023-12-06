@@ -7,10 +7,12 @@ public class PlaneMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float currentAngle;
     private Rigidbody rb;
+    private FuelSystem fuelSystem;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        fuelSystem = GetComponent<FuelSystem>();
     }
 
     private void Update()
@@ -28,11 +30,19 @@ public class PlaneMovement : MonoBehaviour
 
     public void StartPlane()
     {
-        rb.velocity = new Vector3(-Mathf.Sin(currentAngle * Mathf.Deg2Rad),0,- Mathf.Cos(currentAngle * Mathf.Deg2Rad)) * speed;
+        if (fuelSystem.GetCurrentFuelPercentage() > 0f)
+        {
+            fuelSystem.SetPlaneMoving(true);
+            rb.velocity = new Vector3(-Mathf.Sin(currentAngle * Mathf.Deg2Rad), 0, -Mathf.Cos(currentAngle * Mathf.Deg2Rad)) * speed;
+        }
+        else
+        {
+            StopPlane();
+        }
     }
-
     public void StopPlane()
     {
+        fuelSystem.SetPlaneMoving(false);
         rb.velocity = Vector3.zero;
     }
 
