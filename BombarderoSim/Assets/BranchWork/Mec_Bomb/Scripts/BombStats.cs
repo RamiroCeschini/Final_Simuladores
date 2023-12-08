@@ -5,9 +5,8 @@ using UnityEngine;
 public class BombStats : MonoBehaviour
 {
     public Rigidbody rb;
+    public DamageDetector detector;
     
-
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -19,9 +18,6 @@ public class BombStats : MonoBehaviour
     
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Floor"))
-        {
-            Debug.Log("BOOOOM");
-        }
+        detector.Explosion();
     }
 }
