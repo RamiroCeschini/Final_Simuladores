@@ -2527,6 +2527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textResults: {fileID: 1128573183}
+  textRect: {fileID: 1128573182}
   randomData: none
 --- !u!114 &872827373
 MonoBehaviour:
@@ -3592,8 +3593,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.044592, y: -478.06183}
-  m_SizeDelta: {x: 511.5972, y: 1312.1938}
+  m_AnchoredPosition: {x: -19.044592, y: 0}
+  m_SizeDelta: {x: 511.5972, y: 330}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1128573183
 MonoBehaviour:
@@ -3916,7 +3917,7 @@ RectTransform:
   m_Father: {fileID: 663206276}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.72864383}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -4124,6 +4125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SliderCanvas: {fileID: 19184268}
   DataCanvas: {fileID: 1929677689}
+  scrollBarResults: {fileID: 1888465227}
 --- !u!4 &1236229526
 Transform:
   m_ObjectHideFlags: 0
@@ -5538,8 +5540,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1196183179}
   m_HandleRect: {fileID: 1196183178}
   m_Direction: 2
-  m_Value: 1.0000008
-  m_Size: 0.27135617
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
