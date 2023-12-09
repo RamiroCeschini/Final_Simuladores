@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AutomatizationManager : MonoBehaviour
 {
     private DataManager_TMP dataManager;
+
+    [SerializeField] private TextMeshProUGUI textResults;
+    [SerializeField] private RectTransform textRect;
+    private string textResultsValue;
+    private float randomDataNumber  = 0;
 
     private bool isSimulating = false;
     private bool firstSimulated = true;
@@ -80,11 +87,20 @@ public class AutomatizationManager : MonoBehaviour
     public void Result()
     {
         float result = 0;
+        string dataAdded = "Simulation N° " + randomDataNumber + "\r\n";
+
         for (int i = 0; i < dataManager.dataHolderList.Count; i++)
         {
+            dataAdded += dataManager.dataHolderList[i].dataType + ": " + dataManager.dataHolderList[i].data + "   ";
             result += dataManager.dataHolderList[i].data;
+            if (dataManager.dataHolderList[i].dataType == randomData) { randomDataNumber = dataManager.dataHolderList[i].dataSlider.value +1; }
         }
-        Debug.Log("Result: " +  result);
+
+        dataAdded += "\r\n" + "Result: " + result + "\r\n" + "\r\n";
+        textResultsValue += dataAdded;
+        textResults.text = textResultsValue;
+        textRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, textRect.sizeDelta.y + 150);
+
 
     }
 
