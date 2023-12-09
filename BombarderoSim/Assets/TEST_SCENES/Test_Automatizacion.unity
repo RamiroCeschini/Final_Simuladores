@@ -893,7 +893,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 559705859}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 872827372}
+        m_TargetAssemblyTypeName: AutomatizationManager, Assembly-CSharp
+        m_MethodName: NewSimulation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &559705859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1159,19 +1171,7 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 872827373}
-        m_TargetAssemblyTypeName: DataManager_TMP, Assembly-CSharp
-        m_MethodName: SetDato1
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &677525839
 GameObject:
   m_ObjectHideFlags: 0
@@ -1294,6 +1294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 837035773}
+  - component: {fileID: 837035774}
   m_Layer: 5
   m_Name: Dato3
   m_TagString: Untagged
@@ -1324,6 +1325,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &837035774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837035772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15c135806ec31c45b7c7e96c2c9bb13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataType: Dato3
+  data: 0
+  dataText: {fileID: 1534379930}
+  dataSlider: {fileID: 1646788274}
 --- !u!1 &872827371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1367,15 +1384,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca4d2d055bbd6942b6cbd7231a23563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dato1: 0
-  dato2: 0
-  dato3: 0
-  dato1Text: {fileID: 1076844793}
-  dato2Text: {fileID: 1332501680}
-  dato3Text: {fileID: 1534379930}
-  dato1Slider: {fileID: 631242760}
-  dato2Slider: {fileID: 1045489314}
-  dato3Slider: {fileID: 1646788274}
+  dataHolderList:
+  - {fileID: 1975693633}
+  - {fileID: 1150803034}
+  - {fileID: 837035774}
 --- !u!4 &872827374
 Transform:
   m_ObjectHideFlags: 0
@@ -1907,19 +1919,7 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 872827373}
-        m_TargetAssemblyTypeName: DataManager_TMP, Assembly-CSharp
-        m_MethodName: SetDato2
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1052278946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2274,6 +2274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1150803033}
+  - component: {fileID: 1150803034}
   m_Layer: 5
   m_Name: Dato2
   m_TagString: Untagged
@@ -2304,6 +2305,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1150803034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150803032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15c135806ec31c45b7c7e96c2c9bb13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataType: Dato2
+  data: 0
+  dataText: {fileID: 1332501680}
+  dataSlider: {fileID: 1045489314}
 --- !u!1 &1206741488
 GameObject:
   m_ObjectHideFlags: 0
@@ -2390,14 +2407,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 872827373}
         m_TargetAssemblyTypeName: DataManager_TMP, Assembly-CSharp
-        m_MethodName: PickDato1
-        m_Mode: 1
+        m_MethodName: PickData
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Dato1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1206741491
@@ -2524,14 +2541,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 872827373}
         m_TargetAssemblyTypeName: DataManager_TMP, Assembly-CSharp
-        m_MethodName: PickDato2
-        m_Mode: 1
+        m_MethodName: PickData
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Dato2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1253207903
@@ -3069,19 +3086,7 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 872827373}
-        m_TargetAssemblyTypeName: DataManager_TMP, Assembly-CSharp
-        m_MethodName: SetDato3
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1664561162
 GameObject:
   m_ObjectHideFlags: 0
@@ -3568,14 +3573,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 872827373}
         m_TargetAssemblyTypeName: DataManager_TMP, Assembly-CSharp
-        m_MethodName: PickDato3
-        m_Mode: 1
+        m_MethodName: PickData
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Dato3
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1863991795
@@ -3625,6 +3630,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1975693632}
+  - component: {fileID: 1975693633}
   m_Layer: 5
   m_Name: Dato1
   m_TagString: Untagged
@@ -3655,6 +3661,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1975693633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975693631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15c135806ec31c45b7c7e96c2c9bb13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataType: Dato1
+  data: 0
+  dataText: {fileID: 1076844793}
+  dataSlider: {fileID: 631242760}
 --- !u!1 &2013605407
 GameObject:
   m_ObjectHideFlags: 0

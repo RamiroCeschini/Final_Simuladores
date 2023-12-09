@@ -5,11 +5,10 @@ using UnityEngine;
 public class AutomatizationManager : MonoBehaviour
 {
     private DataManager_TMP dataManager;
-    private bool isSimulating = false;
 
-    private float dato1Value;
-    private float dato2Value;
-    private float dato3Value;
+    private bool isSimulating = false;
+    private bool firstSimulated = true;
+    private bool lastData = false;
 
     public string randomData;
 
@@ -26,63 +25,67 @@ public class AutomatizationManager : MonoBehaviour
                 isSimulating = true;
                 dataManager.SimulationStarted();
 
-                if (randomData == "Dato1")
+                for (int i = 0; i < dataManager.dataHolderList.Count; i++) 
                 {
-                    dato2Value = dataManager.dato2;
-                    dato3Value = dataManager.dato3;
-
-                    dataManager.SetDato1(0);
-                    dato1Value = dataManager.dato1;
-                }
-                else if (randomData == "Dato2")
-                {
-                    dato1Value = dataManager.dato1;
-                    dato3Value = dataManager.dato3;
-
-                    dataManager.SetDato2(0);
-                    dato2Value = dataManager.dato2;
-                }
-                else if (randomData == "Dato3")
-                {
-                    dato1Value = dataManager.dato1;
-                    dato2Value = dataManager.dato2;
-
-                    dataManager.SetDato3(0);
-                    dato3Value = dataManager.dato3;
+                    if(randomData == dataManager.dataHolderList[i].dataType) 
+                    {
+                        dataManager.dataHolderList[i].dataSlider.value = dataManager.dataHolderList[i].dataSlider.minValue;
+                        dataManager.SetData(dataManager.dataHolderList[i].dataSlider.value, dataManager.dataHolderList[i].dataType);
+                    }
                 }
 
-                InvokeRepeating("Simulation", 0f, 1f);
+                isSimulating = true;
+                Simulation();
             }
         }
     }
 
+    public void NewSimulation()
+    {
+        if (isSimulating) { Simulation(); }
+    }
+
     private void Simulation()
     {
-        Result();
-        if (randomData == "Dato1")
+        if (firstSimulated)
         {
-            dataManager.SetDato1(dato1Value + 1);
-            dato1Value = dataManager.dato1;
+            firstSimulated = false;
+            Result();
+            return;
         }
-        else if (randomData == "Dato2")
+
+        for (int i = 0; i < dataManager.dataHolderList.Count; i++)
         {
-            dataManager.SetDato2(dato2Value + 1);
-            dato2Value = dataManager.dato2;
+            if(randomData == dataManager.dataHolderList[i].dataType)
+            {
+                dataManager.dataHolderList[i].dataSlider.value += 1;
+                dataManager.SetData(dataManager.dataHolderList[i].dataSlider.value, dataManager.dataHolderList[i].dataType);
+                if (!lastData) { Result(); }
+                if (dataManager.dataHolderList[i].dataSlider.value == dataManager.dataHolderList[i].dataSlider.maxValue)
+                {
+                    if (lastData)
+                    {
+                        Debug.Log("Whole Simulation Finished");
+                        return;
+                    }
+                    lastData = true;
+                }
+            }
         }
-        else if (randomData == "Dato3")
-        {
-            dataManager.SetDato3(dato3Value + 1);
-            dato3Value = dataManager.dato3;
-        }
-        isSimulating = false;
+        
     }
 
 
 
     public void Result()
     {
-        float result = dato1Value + dato2Value + dato3Value;
+        float result = 0;
+        for (int i = 0; i < dataManager.dataHolderList.Count; i++)
+        {
+            result += dataManager.dataHolderList[i].data;
+        }
         Debug.Log("Result: " +  result);
+
     }
 
 }
