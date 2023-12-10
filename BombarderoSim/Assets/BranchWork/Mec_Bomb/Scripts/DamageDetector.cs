@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class DamageDetector : MonoBehaviour
 {
     private float radio;
-    private float daño = 10;
+    private float bombDaño = 10;
     private float dañoTotal;
 
     [Header("Bomba Configuracion")]
@@ -54,8 +54,8 @@ public class DamageDetector : MonoBehaviour
 
     private void CalculoPeso()
     {
-        radio = ((bomPeso * 30) / 100);
-        daño = daño + bomPeso;
+        radio = ((bomPeso * 30) / 50);
+        bombDaño = bombDaño + bomPeso;
     }
 
     private void RestaurarColor()
@@ -64,6 +64,7 @@ public class DamageDetector : MonoBehaviour
         {
             rend.material = original;
         }
+        areaDaño.SetActive(false);
         mRenderer.Clear();
     }
 
@@ -71,7 +72,7 @@ public class DamageDetector : MonoBehaviour
     {
         foreach (float daño in dañoEdificios)
         {
-            dañoTotal += daño;
+            dañoTotal += bombDaño / daño;
             Debug.Log(daño);
         }
 
@@ -84,7 +85,7 @@ public class DamageDetector : MonoBehaviour
     private void EfectoParticulas()
     {
         GameObject particulasObject = Instantiate(particulas,explosion.position, Quaternion.identity);
-        areaDaño.transform.position = explosion.position;
+        areaDaño.transform.position = explosion.position + new Vector3 (0,5,0);
         areaDaño.transform.localScale = new Vector3(radio + 2.4f, areaDaño.transform.localScale.y,radio + 2.4f);
         areaDaño.SetActive(true);
     }
