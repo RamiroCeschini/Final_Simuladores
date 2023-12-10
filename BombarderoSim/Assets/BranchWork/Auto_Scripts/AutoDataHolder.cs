@@ -9,18 +9,25 @@ public class AutoDataHolder : MonoBehaviour
 {
     public string dataType;
     [HideInInspector] public float data;
+    [SerializeField] private float minData;
+    [SerializeField] private float maxData;
     public TextMeshProUGUI dataText;
     public Slider dataSlider;
 
-    private void Start()
+
+    protected void StartMetod()
     {
         dataSlider.onValueChanged.AddListener(delegate { OnSliderChanged(); });
+        dataSlider.minValue = minData;
+        dataSlider.maxValue = maxData;
     }
 
     private void OnSliderChanged()
     {
         data = dataSlider.value;
         dataText.text = dataType + ": " + data;
+        DataAction();
     }
 
+    protected virtual void DataAction() { }
 }

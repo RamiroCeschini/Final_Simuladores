@@ -11,7 +11,7 @@ public class DamageDetector : MonoBehaviour
     private float dañoTotal;
 
     [Header("Bomba Configuracion")]
-    [SerializeField] private float bomPeso;
+    [HideInInspector] public float bomPeso;
     [SerializeField] private GameObject bomba;
     [SerializeField] private Transform bombaTransform;
     [SerializeField] private Transform explosion;
@@ -28,8 +28,11 @@ public class DamageDetector : MonoBehaviour
 
     [Header("Estadisticas")]
     [SerializeField] private List<float> dañoEdificios;
-    
-    
+
+    private void Start()
+    {
+        bomba.GetComponent<Rigidbody>().mass = bomPeso;
+    }
 
     public void Explosion()
     {

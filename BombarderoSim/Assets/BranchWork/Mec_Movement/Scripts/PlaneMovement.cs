@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class PlaneMovement : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float currentAngle;
+    [HideInInspector] public float speed;
+    [HideInInspector] public float currentAngle;
+    [SerializeField] private Rigidbody bomRb;
+    private bool isMoving;
     private Rigidbody rb;
     private FuelSystem fuelSystem;
+    public float Speed { get { return speed; }}
+    public float BombWeight { get { return bomRb.mass; }}
 
     private void Start()
     {
@@ -15,35 +19,26 @@ public class PlaneMovement : MonoBehaviour
         fuelSystem = GetComponent<FuelSystem>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            StartPlane();
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            StopPlane();
-        }
-    }
-
     public void StartPlane()
     {
-        if (fuelSystem.GetCurrentFuelPercentage() > 0f)
+        if (CanMove())
         {
             fuelSystem.SetPlaneMoving(true);
             rb.velocity = new Vector3(-Mathf.Sin(currentAngle * Mathf.Deg2Rad), 0, -Mathf.Cos(currentAngle * Mathf.Deg2Rad)) * speed;
-        }
-        else
-        {
-            StopPlane();
+            isMoving = true;
         }
     }
+    private bool CanMove()
+    {
+        return fuelSystem.GetCurrentFuelPercentage() > 0f && !isMoving;
+    }
+
     public void StopPlane()
     {
         fuelSystem.SetPlaneMoving(false);
         rb.velocity = Vector3.zero;
+        bomRb.velocity = Vector3.zero;
+        isMoving = false;
     }
 
     public void BarrelRotationX(float rotationX)
