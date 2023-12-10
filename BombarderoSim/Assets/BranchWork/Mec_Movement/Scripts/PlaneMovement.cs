@@ -10,6 +10,7 @@ public class PlaneMovement : MonoBehaviour
     private bool isMoving;
     private Rigidbody rb;
     private FuelSystem fuelSystem;
+    [SerializeField] private BombReleaseTmp bombRelease;
     public float Speed { get { return speed; }}
     public float BombWeight { get { return bomRb.mass; }}
 
@@ -51,7 +52,7 @@ public class PlaneMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ZLimit"))
         {
-            Debug.Log("BombDrop");
+            bombRelease.ReleaseBomb();
         }
     }
 }
