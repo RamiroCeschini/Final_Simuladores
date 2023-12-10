@@ -20,7 +20,7 @@ public class DamageDetector : MonoBehaviour
     [Header("Materiales Configuracion")]
     [SerializeField] private Material original;
     [SerializeField] private Material destruido;
-    [SerializeField] private List<MeshRenderer> renderer;
+    [SerializeField] private List<MeshRenderer> mRenderer;
 
     [Header("Particulas Configuracion")]
     [SerializeField] private List<ParticleSystem> efectos;
@@ -43,7 +43,7 @@ public class DamageDetector : MonoBehaviour
             {
                 float dañoEdificio = Vector3.Distance(explosion.position,colisionador.transform.position);
                 dañoEdificios.Add(dañoEdificio);
-                renderer.Add(colisionador.GetComponent<MeshRenderer>());
+                mRenderer.Add(colisionador.GetComponent<MeshRenderer>());
                 colisionador.GetComponent<MeshRenderer>().material = destruido;
                 Invoke("RestaurarColor", 3f);
             }
@@ -60,11 +60,11 @@ public class DamageDetector : MonoBehaviour
 
     private void RestaurarColor()
     {
-        foreach (MeshRenderer rend in renderer)
+        foreach (MeshRenderer rend in mRenderer)
         {
             rend.material = original;
         }
-        renderer.Clear();
+        mRenderer.Clear();
     }
 
     private void SumarDaño()
