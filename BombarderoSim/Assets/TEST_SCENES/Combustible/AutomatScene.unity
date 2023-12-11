@@ -3774,7 +3774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f35c3565ff782b043abe0a4eb7affb25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollBarResults: {fileID: 0}
+  scrollBarResults: {fileID: 2845696393089569294}
 --- !u!4 &718920850
 Transform:
   m_ObjectHideFlags: 0
@@ -5216,7 +5216,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040956935}
-  m_LocalRotation: {x: 0.0000000013743023, y: 0.9871586, z: -0.15974334, w: 0.000000008492713}
+  m_LocalRotation: {x: -0.0000000013743024, y: 0.9871586, z: -0.15974332, w: -0.000000008492714}
   m_LocalPosition: {x: 0, y: 500.9, z: 1004.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5356,6 +5356,14 @@ MonoBehaviour:
   - {fileID: 1887698941}
   - {fileID: 1128615443}
   - {fileID: 2129784681}
+  pickButtons:
+  - {fileID: 2061005081}
+  - {fileID: 1503245533}
+  - {fileID: 924173421}
+  - {fileID: 372552338}
+  - {fileID: 346772410}
+  - {fileID: 109303463}
+  - {fileID: 1387922434}
   buttons: {fileID: 925096486}
   textResults: {fileID: 2845696393404599226}
   textRect: {fileID: 2845696393404599227}
@@ -6770,7 +6778,7 @@ FixedJoint:
   m_ConnectedBody: {fileID: 7547687069071275790}
   m_ConnectedArticulationBody: {fileID: 0}
   m_BreakForce: Infinity
-  m_BreakTorque: 1000
+  m_BreakTorque: Infinity
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
   m_MassScale: 1
@@ -7118,6 +7126,8 @@ MonoBehaviour:
   startButton: {fileID: 2133867888}
   planeMov: {fileID: 7547687069071275788}
   sliderManager: {fileID: 1091264929}
+  canvasManager: {fileID: 718920849}
+  canvasConteiner: {fileID: 326572583}
   randomData: none
 --- !u!1001 &1318058025
 PrefabInstance:
@@ -9669,7 +9679,7 @@ MonoBehaviour:
   dataType: Bomb
   data: 0
   minData: 50
-  maxData: 200
+  maxData: 55
   dataText: {fileID: 2019925703}
   dataSlider: {fileID: 7721829053391104948}
   bomb: {fileID: 6644940899850198606}
@@ -10832,19 +10842,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1315107976}
         m_TargetAssemblyTypeName: AutomatizationManager, Assembly-CSharp
-        m_MethodName: StartSimulationLogic
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1315107976}
-        m_TargetAssemblyTypeName: AutomatizationManager, Assembly-CSharp
-        m_MethodName: CreateHasSimulatedPref
+        m_MethodName: StartSimulation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13881,7 +13879,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
-  m_WholeNumbers: 0
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:

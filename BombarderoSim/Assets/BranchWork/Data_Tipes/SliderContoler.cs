@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class SliderContoler : MonoBehaviour
 {
     [SerializeField] private List<AutoDataHolder> autoDataHolders;
+    [SerializeField] private List<GameObject> pickButtons;
     [SerializeField] private Buttons buttons;
     [SerializeField] private TextMeshProUGUI textResults;
     [SerializeField] private RectTransform textRect;
@@ -35,6 +36,13 @@ public class SliderContoler : MonoBehaviour
         foreach (AutoDataHolder holder in autoDataHolders)
         {
             holder.dataSlider.interactable = active;
+        }
+        if(isAutomatic) 
+        {
+            foreach (GameObject button in pickButtons)
+            {
+                button.gameObject.SetActive(false);
+            }
         }
     }
 

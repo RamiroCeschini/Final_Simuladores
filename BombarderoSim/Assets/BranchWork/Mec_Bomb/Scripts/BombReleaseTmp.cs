@@ -12,6 +12,7 @@ public class BombReleaseTmp : MonoBehaviour
     {
         Debug.Log("shoot");
         joint.breakForce = 0f;
+        joint.breakTorque = 0f;
         rb.useGravity = true;
         rb.AddForce(0, -1, 0);
     }

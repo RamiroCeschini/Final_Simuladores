@@ -35,11 +35,12 @@ public class PlaneMovement : MonoBehaviour
             isMoving = true;
             flightStartTime = Time.time;
         }
+        else
+        {
+            Debug.Log("oie loco no pueo" + isMoving + fuelSystem.GetCurrentFuelPercentage());
+        }
     }
-    private bool CanMove()
-    {
-        return fuelSystem.GetCurrentFuelPercentage() > 0f && !isMoving;
-    }
+    private bool CanMove() => fuelSystem.GetCurrentFuelPercentage() > 0f && !isMoving;
 
     public void StopPlane()
     {

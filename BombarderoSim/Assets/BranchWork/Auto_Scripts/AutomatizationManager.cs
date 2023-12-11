@@ -13,13 +13,10 @@ public class AutomatizationManager : MonoBehaviour
     [SerializeField] private GameObject startButton;
     [SerializeField] private PlaneMovement planeMov;
     [SerializeField] private SliderContoler sliderManager;
-    private string textResultsValue;
-    private float randomDataNumber  = 0;
+    [SerializeField] private TMP_CanvasManager canvasManager;
+    [SerializeField] private CanvasConteiner canvasConteiner;
 
-    private bool isSimulating = false;
-  //  private bool firstSimulated = true;
     private bool lastData = false;
-
     public string randomData;
 
     private void Start()
@@ -27,12 +24,21 @@ public class AutomatizationManager : MonoBehaviour
         dataManager = GetComponent<DataManager_TMP>();
         if (PlayerPrefs.HasKey("HasSimulated"))
         {
-            randomData = PlayerPrefs.GetString("RandomData");
-            Debug.Log(randomData);
             startButton.SetActive(false);
-            SetValues();
-            Simulation();
+            sliderManager.UnableSliders(false);
+            Invoke("RepeatingSimulation", 2f);
         }
+        if (PlayerPrefs.HasKey("SimulationEnded"))
+        {
+            lastData = true;
+        }
+    }
+
+    private void RepeatingSimulation()
+    {
+        randomData = PlayerPrefs.GetString("RandomData");
+        SetValues();
+        Simulation();
     }
 
     private void SetValues()
@@ -52,16 +58,16 @@ public class AutomatizationManager : MonoBehaviour
     {
         planeMov.StartPlane();
         sliderManager.SaveAtemptData();
+        sliderManager.UnableSliders(false);
     }
 
     public void StartSimulation()
     {
         if (randomData != "none")
         {
-            if (!isSimulating)
+            if (!PlayerPrefs.HasKey("HasSimulated"))
             {
                 startButton.SetActive(false);
-                isSimulating = true;
                 dataManager.SimulationStarted();
 
                 for (int i = 0; i < dataManager.dataHolderList.Count; i++) 
@@ -80,12 +86,12 @@ public class AutomatizationManager : MonoBehaviour
 
     private void Simulation()
     {
-    //    if (firstSimulated)
-    //    {
-    //        firstSimulated = false;
-    //        StartSimulationLogic();
-   //         return;
-   //     }
+        if (!PlayerPrefs.HasKey("HasSimulated"))
+        {
+            CreateHasSimulatedPref();
+            StartSimulationLogic();
+            return;
+        }
 
         for (int i = 0; i < dataManager.dataHolderList.Count; i++)
         {
@@ -98,36 +104,23 @@ public class AutomatizationManager : MonoBehaviour
                 {
                     if (lastData)
                     {
-                        Debug.Log("Whole Simulation Finished");
+                        SimulationEnded();
                         return;
                     }
-                    lastData = true;
+                    PlayerPrefs.SetInt("SimulationEnded", 1);
                 }
             }
         }
         
     }
 
-
-
-    public void Result()
+    private void SimulationEnded()
     {
-        float result = 0;
-        string dataAdded = "Simulation N° " + randomDataNumber + "\r\n";
-
-        for (int i = 0; i < dataManager.dataHolderList.Count; i++)
-        {
-            dataAdded += dataManager.dataHolderList[i].dataType + ": " + dataManager.dataHolderList[i].data + "   ";
-            result += dataManager.dataHolderList[i].data;
-            if (dataManager.dataHolderList[i].dataType == randomData) { randomDataNumber = dataManager.dataHolderList[i].dataSlider.value +1; }
-        }
-
-        dataAdded += "\r\n" + "Result: " + result + "\r\n" + "\r\n";
-        textResultsValue += dataAdded;
-        textResults.text = textResultsValue;
-        textRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, textRect.sizeDelta.y + 150);
-
-
+        sliderManager.SetText();
+        canvasManager.ChangeResultCanvas(canvasConteiner);
     }
+
+
+
 
 }
