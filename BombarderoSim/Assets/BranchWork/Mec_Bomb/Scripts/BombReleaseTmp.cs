@@ -7,6 +7,7 @@ public class BombReleaseTmp : MonoBehaviour
     public GameObject bomb;
     public Joint joint;
     public Rigidbody rb;
+    public bool hasShot = false;
    
     public void ReleaseBomb()
     {
@@ -15,5 +16,6 @@ public class BombReleaseTmp : MonoBehaviour
         joint.breakTorque = 0f;
         rb.useGravity = true;
         rb.AddForce(0, -1, 0);
+        hasShot = true;
     }
 }

@@ -37,7 +37,7 @@ public class PlaneMovement : MonoBehaviour
         }
         else
         {
-            Debug.Log("oie loco no pueo" + isMoving + fuelSystem.GetCurrentFuelPercentage());
+            StopPlane();
         }
     }
     private bool CanMove() => fuelSystem.GetCurrentFuelPercentage() > 0f && !isMoving;
@@ -52,6 +52,7 @@ public class PlaneMovement : MonoBehaviour
         dataManager.flightTime = flightTime;
         dataManager.hasTimeData = true;
         dataManager.SaveResultData();
+        if(!bombRelease.hasShot) { bombRelease.ReleaseBomb(); }
     }
 
     public void BarrelRotationX(float rotationX)
