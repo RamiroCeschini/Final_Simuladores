@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -17,6 +18,7 @@ public class DamageDetector : MonoBehaviour
     [SerializeField] private Transform explosion;
     [SerializeField] private GameObject areaDaño;
 
+
     [Header("Materiales Configuracion")]
     [SerializeField] private Material original;
     [SerializeField] private Material destruido;
@@ -28,6 +30,7 @@ public class DamageDetector : MonoBehaviour
 
     [Header("Estadisticas")]
     [SerializeField] private List<float> dañoEdificios;
+    [SerializeField] private SliderContoler dataManager;
 
     private void Start()
     {
@@ -79,10 +82,10 @@ public class DamageDetector : MonoBehaviour
             Debug.Log(daño);
         }
 
+        dataManager.totalDamage = dañoTotal;
         Debug.Log("DAÑO TOTAL: " + dañoTotal);
         dañoEdificios.Clear();
         dañoTotal = 0;
-        
     }
 
     private void EfectoParticulas()
@@ -93,9 +96,5 @@ public class DamageDetector : MonoBehaviour
         areaDaño.SetActive(true);
     }
 
-    private void OnDrawGizmo()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, radio);
-    }
+
 }

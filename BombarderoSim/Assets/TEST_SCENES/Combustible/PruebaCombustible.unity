@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1316,6 +1316,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1091264929}
+        m_TargetAssemblyTypeName: SliderContoler, Assembly-CSharp
+        m_MethodName: SetTextPrefs
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &326572585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1531,7 +1543,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351095061}
-  m_LocalRotation: {x: -2.935037e-10, y: 0.9998545, z: -0.01705784, w: -0.000000017203877}
+  m_LocalRotation: {x: 2.9350333e-10, y: 0.9998545, z: -0.01705782, w: 0.000000017203877}
   m_LocalPosition: {x: 0, y: 500.66998, z: 1019.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4352,7 +4364,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040956935}
-  m_LocalRotation: {x: -0.0000000013743023, y: 0.9871586, z: -0.15974334, w: -0.000000008492713}
+  m_LocalRotation: {x: 0.0000000013743024, y: 0.9871586, z: -0.15974332, w: 0.000000008492714}
   m_LocalPosition: {x: 0, y: 500.9, z: 1004.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4492,6 +4504,11 @@ MonoBehaviour:
   - {fileID: 1887698941}
   - {fileID: 1128615443}
   - {fileID: 2129784681}
+  textResults: {fileID: 2845696393404599226}
+  textRect: {fileID: 2845696393404599227}
+  totalDamage: 0
+  fuelLeft: 0
+  flightTime: 0
 --- !u!4 &1091264930
 Transform:
   m_ObjectHideFlags: 0
@@ -6926,7 +6943,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621913369}
-  m_LocalRotation: {x: -0.000000003441157, y: 0.9797973, z: -0.19999304, w: -0.000000016858765}
+  m_LocalRotation: {x: 0.0000000034411574, y: 0.9797973, z: -0.19999304, w: 0.000000016858767}
   m_LocalPosition: {x: 0, y: 514.1, z: 1033.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8496,7 +8513,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102653803}
-  m_LocalRotation: {x: -0.000000003441157, y: 0.9797973, z: -0.19999304, w: -0.000000016858765}
+  m_LocalRotation: {x: 0.0000000034411574, y: 0.9797973, z: -0.19999304, w: 0.000000016858767}
   m_LocalPosition: {x: 0, y: 514.1, z: 1033.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8820,6 +8837,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: SliderContoler, Assembly-CSharp
         m_MethodName: UnableSliders
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1091264929}
+        m_TargetAssemblyTypeName: SliderContoler, Assembly-CSharp
+        m_MethodName: SaveAtemptData
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10616,7 +10645,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c6f6e8cec623c41bc4ce6eb4c67a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 4635456081470790204}
   detector: {fileID: 6644940899850198606}
 --- !u!136 &4635456081470790201
 CapsuleCollider:
@@ -11523,6 +11551,7 @@ MonoBehaviour:
   - {fileID: 0}
   particulas: {fileID: 8207019665550307208, guid: ead3a1a18983c8841b1f8bd2acada6a6, type: 3}
   "da\xF1oEdificios": []
+  dataManager: {fileID: 1091264929}
 --- !u!1 &6644940899850198607
 GameObject:
   m_ObjectHideFlags: 0
