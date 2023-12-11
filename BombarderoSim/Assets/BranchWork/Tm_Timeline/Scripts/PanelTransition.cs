@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class PanelTransition : MonoBehaviour
 {
@@ -19,5 +20,16 @@ public class PanelTransition : MonoBehaviour
         // Activar el Panel 2 y reproducir la transición
         timeline.gameObject.SetActive(true);
         timeline.Play();
+    }
+
+    public void RestartScene()
+    {
+        // Recargar la escena actual
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Close()
+    {
+        Application.Quit();
     }
 }
