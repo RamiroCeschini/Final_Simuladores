@@ -7,11 +7,13 @@ public class PlaneMovement : MonoBehaviour
     [HideInInspector] public float speed;
     [HideInInspector] public float currentAngle;
     [SerializeField] private Rigidbody bomRb;
-    private bool isMoving;
+    private bool isMoving = false;
     private Rigidbody rb;
     private FuelSystem fuelSystem;
     [SerializeField] private BombReleaseTmp bombRelease;
     [SerializeField] private SliderContoler dataManager;
+
+
 
     private float flightStartTime;
     public float flightTime;
@@ -47,6 +49,7 @@ public class PlaneMovement : MonoBehaviour
         isMoving = false;
         flightTime = Time.time - flightStartTime;
         dataManager.flightTime = flightTime;
+        dataManager.hasTimeData = true;
         dataManager.SaveResultData();
     }
 

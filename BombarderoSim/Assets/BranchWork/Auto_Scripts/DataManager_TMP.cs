@@ -27,6 +27,7 @@ public class DataManager_TMP : MonoBehaviour
             {
                 dataHolderList[i].dataText.text = dataHolderList[i].dataType + ": " + dataHolderList[i].data;
                 dataHolderList[i].data = dataValue;
+                dataHolderList[i].dataSlider.value = dataHolderList[i].data;
             }
         }
     }
@@ -39,6 +40,7 @@ public class DataManager_TMP : MonoBehaviour
             {
                 dataHolderList[i].dataSlider.gameObject.SetActive(false);
                 automatizationManager.randomData = dataHolderList[i].dataType;
+                PlayerPrefs.SetString("RandomData", automatizationManager.randomData);
             }
             else
             {

@@ -83,6 +83,8 @@ public class DamageDetector : MonoBehaviour
         }
 
         dataManager.totalDamage = dañoTotal;
+        dataManager.hasDamageData = true;
+        dataManager.SaveResultData();
         Debug.Log("DAÑO TOTAL: " + dañoTotal);
         dañoEdificios.Clear();
         dañoTotal = 0;

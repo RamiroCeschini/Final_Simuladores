@@ -8,13 +8,18 @@ using UnityEngine.UI;
 public class SliderContoler : MonoBehaviour
 {
     [SerializeField] private List<AutoDataHolder> autoDataHolders;
+    [SerializeField] private Buttons buttons;
     [SerializeField] private TextMeshProUGUI textResults;
     [SerializeField] private RectTransform textRect;
     [SerializeField] private Scrollbar scrollbar;
+    public bool hasDamageData = false;
+    public bool hasTimeData = false;
     private string atemptData;
     private string resultData;
     public float totalDamage;
     public float flightTime;
+
+    [SerializeField] private bool isAutomatic;
 
     private bool dataCollected = false;
 
@@ -40,19 +45,25 @@ public class SliderContoler : MonoBehaviour
         for (int i = 0; i < autoDataHolders.Count; i++)
         {
             dataAdded += autoDataHolders[i].dataType + ": " + autoDataHolders[i].data + "   ";
+            PlayerPrefs.SetFloat(autoDataHolders[i].dataType, autoDataHolders[i].data);
         }
         atemptData += dataAdded;
-        if (dataCollected) { SetTextPrefs(); }
+        if (dataCollected) { SetTextPrefs(); if (isAutomatic) { buttons.RestartAutoSimulation(); }; }
         dataCollected = true;
     }
 
     public void SaveResultData()
     {
-        string resultAdded = "";
-        resultAdded += "\r\n" + "Result:" + "\r\n" + "Total Damage: " + totalDamage + "\r\n"  + "Flight Time: " + flightTime + "\r\n" + "\r\n";
-        resultData += resultAdded;
-        if (dataCollected) { SetTextPrefs(); }
-        dataCollected = true;
+        if (hasDamageData && hasTimeData)
+        {
+            string resultAdded = "";
+            resultAdded += "\r\n" + "Result:" + "\r\n" + "Total Damage: " + totalDamage + "\r\n" + "Flight Time: " + flightTime + "\r\n" + "\r\n";
+            resultData += resultAdded;
+            if (dataCollected) { SetTextPrefs(); if (isAutomatic) { buttons.RestartAutoSimulation(); }; }
+            dataCollected = true;
+
+            
+        }
     }
     private void SetTextPrefs()
     {
