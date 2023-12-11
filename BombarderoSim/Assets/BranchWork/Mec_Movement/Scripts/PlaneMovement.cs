@@ -11,6 +11,10 @@ public class PlaneMovement : MonoBehaviour
     private Rigidbody rb;
     private FuelSystem fuelSystem;
     [SerializeField] private BombReleaseTmp bombRelease;
+    [SerializeField] private SliderContoler dataManager;
+
+    private float flightStartTime;
+    public float flightTime;
     public float Speed { get { return speed; }}
     public float BombWeight { get { return bomRb.mass; }}
 
@@ -27,6 +31,7 @@ public class PlaneMovement : MonoBehaviour
             fuelSystem.SetPlaneMoving(true);
             rb.velocity = new Vector3(-Mathf.Sin(currentAngle * Mathf.Deg2Rad), 0, -Mathf.Cos(currentAngle * Mathf.Deg2Rad)) * speed;
             isMoving = true;
+            flightStartTime = Time.time;
         }
     }
     private bool CanMove()
@@ -38,8 +43,10 @@ public class PlaneMovement : MonoBehaviour
     {
         fuelSystem.SetPlaneMoving(false);
         rb.velocity = Vector3.zero;
-        bomRb.velocity = Vector3.zero;
+        if (bomRb != null) { bomRb.velocity = Vector3.zero; }
         isMoving = false;
+        flightTime = Time.time - flightStartTime;
+        dataManager.flightTime = flightTime;
     }
 
     public void BarrelRotationX(float rotationX)

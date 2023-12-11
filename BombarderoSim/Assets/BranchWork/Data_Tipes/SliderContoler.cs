@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 
@@ -11,8 +12,15 @@ public class SliderContoler : MonoBehaviour
     private string atemptData;
     public float totalDamage;
     public float fuelLeft = 0;
-    public float flightTime = 0;
+    public float flightTime;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            CleanData();
+        }
+    }
     public void UnableSliders(bool active)
     {
         foreach (AutoDataHolder holder in autoDataHolders)
@@ -57,5 +65,10 @@ public class SliderContoler : MonoBehaviour
         {
             return 0;
         }
+    }
+
+    private void CleanData()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }
