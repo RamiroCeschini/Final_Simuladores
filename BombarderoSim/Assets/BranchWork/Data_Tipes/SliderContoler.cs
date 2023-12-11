@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SliderContoler : MonoBehaviour
 {
     [SerializeField] private List<AutoDataHolder> autoDataHolders;
     [SerializeField] private TextMeshProUGUI textResults;
     [SerializeField] private RectTransform textRect;
+    [SerializeField] private Scrollbar scrollbar;
     private string atemptData;
+    private string resultData;
     public float totalDamage;
-    public float fuelLeft = 0;
     public float flightTime;
+
+    private bool dataCollected = false;
 
     private void Update()
     {
@@ -37,23 +41,35 @@ public class SliderContoler : MonoBehaviour
         {
             dataAdded += autoDataHolders[i].dataType + ": " + autoDataHolders[i].data + "   ";
         }
-
-        dataAdded += "\r\n" + "Result:" + "\r\n" + "Total Damage: " + totalDamage + "\r\n" +"Fuel Left: " + fuelLeft +  "\r\n" + "Flight Time: " + flightTime + "\r\n" + "\r\n";
         atemptData += dataAdded;
-        textResults.text = atemptData;
-        textRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, textRect.sizeDelta.y + 150 * PlayerPrefs.GetInt("CantidadIntentos"));
+        if (dataCollected) { SetTextPrefs(); }
+        dataCollected = true;
     }
-    public void SetTextPrefs()
+
+    public void SaveResultData()
+    {
+        string resultAdded = "";
+        resultAdded += "\r\n" + "Result:" + "\r\n" + "Total Damage: " + totalDamage + "\r\n"  + "Flight Time: " + flightTime + "\r\n" + "\r\n";
+        resultData += resultAdded;
+        if (dataCollected) { SetTextPrefs(); }
+        dataCollected = true;
+    }
+    private void SetTextPrefs()
     {
         PlayerPrefs.SetInt("CantidadIntentos", CantidadIntentos() + 1);
-        PlayerPrefs.SetString("Intento" + PlayerPrefs.GetInt("CantidadIntentos"), atemptData);
-
-        for (int i = 0; i < PlayerPrefs.GetInt("CantidadIntentos"); i++)
-        {
-            textResults.text += PlayerPrefs.GetString("Intento" + i);
-        }
+        PlayerPrefs.SetString("Intento" + PlayerPrefs.GetInt("CantidadIntentos"), atemptData + resultData);
     }
-
+    public void SetText()
+    {
+        string resultsTextTmp = "";
+        for (int i = 1; i < PlayerPrefs.GetInt("CantidadIntentos") +1; i++)
+        {
+            resultsTextTmp += PlayerPrefs.GetString("Intento" + i);
+            textRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, textRect.sizeDelta.y + 250);
+        }
+        textResults.text = resultsTextTmp;
+        scrollbar.value = 1;
+    }
     private int CantidadIntentos()
     {
         if (PlayerPrefs.HasKey("CantidadIntentos"))
@@ -63,7 +79,7 @@ public class SliderContoler : MonoBehaviour
 
         else
         {
-            return 0;
+            return 1;
         }
     }
 

@@ -47,6 +47,7 @@ public class PlaneMovement : MonoBehaviour
         isMoving = false;
         flightTime = Time.time - flightStartTime;
         dataManager.flightTime = flightTime;
+        dataManager.SaveResultData();
     }
 
     public void BarrelRotationX(float rotationX)
