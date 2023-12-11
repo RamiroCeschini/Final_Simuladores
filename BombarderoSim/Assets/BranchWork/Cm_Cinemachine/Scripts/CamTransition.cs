@@ -5,11 +5,10 @@ using UnityEngine;
 public class CamTransition : MonoBehaviour
 {
     public GameObject[] cameraList;
-    int Cameras = 3;
 
     private void Start()
     {
-        for(int i = 0; i < Cameras; i++)
+        for(int i = 0; i < cameraList.Length; i++)
         {
             cameraList[i].gameObject.SetActive(false);
         }
@@ -18,31 +17,23 @@ public class CamTransition : MonoBehaviour
 
     void TurnOffCameras()
     {
-        for (int i = 0; i < Cameras; i++)
+        for (int i = 0; i < cameraList.Length; i++)
         {
             cameraList[i].gameObject.SetActive(false);
         }
     }
 
-    private void Update()
+    public void ChangerCamera(int cameraNumber)
     {
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (cameraNumber < cameraList.Length)
         {
-            Debug.Log("Key 1 pressed");
             TurnOffCameras();
-            cameraList[0].gameObject.SetActive(true);
+            cameraList[cameraNumber].gameObject.SetActive(true);
         }
-        if (Input.GetKey(KeyCode.Alpha2))
+        else
         {
-            Debug.Log("Key 2 pressed");
-            TurnOffCameras();
-            cameraList[1].gameObject.SetActive(true);
-        }
-        if (Input.GetKey(KeyCode.Alpha3))
-        {
-            Debug.Log("Key 3 pressed");
-            TurnOffCameras();
-            cameraList[2].gameObject.SetActive(true);
+            return;
         }
     }
+
 }
