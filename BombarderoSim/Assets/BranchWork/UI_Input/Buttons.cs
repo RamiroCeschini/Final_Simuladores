@@ -7,11 +7,24 @@ public class Buttons : MonoBehaviour
 {
     public void RestartSimulation()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void RestartAutoSimulation()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
+    }
+
+    public void DeleteKeys()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+    public void Menu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void Exit()
+    {
+        Application.Quit();
     }
 }
