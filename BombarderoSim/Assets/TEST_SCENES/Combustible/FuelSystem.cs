@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FuelSystem : MonoBehaviour
 {
     [SerializeField] private float maxFuel = 100f;
-    [SerializeField] private float fuelConsumptionRate = 5f; 
+    [SerializeField] private float fuelConsumptionRate = 5f;
+    [SerializeField] private Slider sliderFuel;
     private PlaneMovement planeMovement;
     public float currentFuel;
     private bool isPlaneMoving = false;
@@ -34,7 +36,7 @@ public class FuelSystem : MonoBehaviour
         {
             float fuelConsumed = fuelConsumptionRate * Time.deltaTime;
             currentFuel = Mathf.Max(0f, currentFuel - fuelConsumed);
-            //Debug.Log("Combustible restante: " + currentFuel.ToString("F2") + " %");
+            sliderFuel.value = currentFuel;
         }
         else
         {

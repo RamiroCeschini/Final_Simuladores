@@ -29,5 +29,5 @@ public class AutoDataHolder : MonoBehaviour
         DataAction();
     }
 
-    protected virtual void DataAction() { }
+    protected virtual void DataAction() {  }
 }
